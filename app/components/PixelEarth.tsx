@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback } from "react";
 
 // Pixel size for the blocky look
-const PX = 6;
+const PX = 5;
 
 // Simple equirectangular world map data — 1 = land, 0 = water
 // 36 rows × 72 cols ≈ 5° per cell
