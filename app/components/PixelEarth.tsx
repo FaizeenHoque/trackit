@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useRef, useCallback } from "react";
 
 // Pixel size for the blocky look
@@ -74,8 +72,13 @@ function hashNoise(x: number, y: number): number {
   return (h & 0xff) / 255;
 }
 
-export default function PixelEarth() {
+interface PixelEarthProps {
+  centered?: boolean;
+}
+
+export default function PixelEarth({ centered = false }: PixelEarthProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
   const rotRef = useRef({ lonOffset: 0, latOffset: 0 });
   const rafRef = useRef(0);
@@ -160,8 +163,14 @@ export default function PixelEarth() {
     if (!canvas) return;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      if (centered && containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+      } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
     };
     resize();
     window.addEventListener("resize", resize);
@@ -178,7 +187,15 @@ export default function PixelEarth() {
       window.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [draw]);
+  }, [draw, centered]);
+
+  if (centered) {
+    return (
+      <div ref={containerRef} className="w-full h-full">
+        <canvas ref={canvasRef} className="w-full h-full" style={{ background: "transparent" }} />
+      </div>
+    );
+  }
 
   return (
     <canvas
