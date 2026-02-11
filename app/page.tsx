@@ -5,7 +5,9 @@ import PixelEarth from "./components/PixelEarth";
 
 import { FilloutPopupEmbed } from "@fillout/react";
 import { site } from "@/config/site";
-import { Compass, MapPin, Navigation } from "lucide-react";
+import { Compass, Gamepad2, Map, MapPin, Navigation, Radio } from "lucide-react";
+import { Accordion, AccordionItem } from "@heroui/accordion";
+import { faqs } from "@/config/faq";
 
 const FloatingElement = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => (
   <div className={`absolute pointer-events-none opacity-20 ${className}`} style={{ animationDelay: `${delay}s` }}>
@@ -88,6 +90,43 @@ export default function Home() {
           RSVP NOW
         </a>
       </section>
+
+      {/* Intro */}
+      <FadeInSection>
+        <section className="relative z-10 max-w-4xl mx-auto px-6 py-20">
+          <h2 className="font-pixel text-lg sm:text-xl text-foreground text-center mb-4">WHAT YOU CAN BUILD</h2>
+          <p className="font-pixel-body text-xl text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+            Pick a track that excites you — or invent your own geography-powered project. Ship it, share it, and we'll ship you something back.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-6">
+            <TrackCard icon={Map} title="MAP APP" desc="Interactive maps, custom layers, or location-based tools." />
+            <TrackCard icon={Gamepad2} title="GEO GAME" desc="GeoGuessr-style challenges, quizzes, or exploration games." />
+            <TrackCard icon={Radio} title="GPS TRACKER" desc="DIY hardware or software that tracks real-world movement." />
+          </div>
+        </section>
+      </FadeInSection>
+
+      {/* FAQ */}
+      <FadeInSection>
+        <section className="relative z-10 max-w-2xl mx-auto px-6 py-20">
+          <h2 className="font-pixel text-lg sm:text-xl text-foreground text-center mb-10">FAQ</h2>
+          <Accordion typeof="single" className="space-y-2">
+            {faqs.map((f, i) => (
+              <AccordionItem
+                key={i}
+                value={`faq-${i}`}
+                title={f.q} // <-- use the 'title' prop instead of AccordionTrigger
+                className="border-2 border-border bg-card/90 backdrop-blur-sm px-4 hover:border-primary transition-colors"
+              >
+                <div className="font-pixel-body text-lg text-muted-foreground pb-5">
+                  {f.a}
+                </div>
+              </AccordionItem>
+            ))}
+          </Accordion>
+
+        </section>
+      </FadeInSection>
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-border bg-background/70 backdrop-blur-sm py-10 px-6">
