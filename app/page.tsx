@@ -83,9 +83,9 @@ export default function Home() {
           Build a map app, GeoGuessr-style game, or DIY GPS tracker — and win prizes from Hack Club.
         </p>
         <a
-          href="#rsvp"
           id="rsvp"
           className="font-pixel text-sm sm:text-base bg-primary text-primary-foreground px-8 py-4 border-4 border-primary animate-pulse-glow hover:scale-105 transition-transform"
+          onClick={() => setIsOpen(true)}
         >
           RSVP NOW
         </a>
@@ -115,7 +115,7 @@ export default function Home() {
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                title={f.q} // <-- use the 'title' prop instead of AccordionTrigger
+                title={f.q}
                 className="border-2 border-border bg-card/90 backdrop-blur-sm px-4 hover:border-primary transition-colors"
               >
                 <div className="font-pixel-body text-lg text-muted-foreground pb-5">
