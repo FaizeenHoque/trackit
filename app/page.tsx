@@ -69,6 +69,26 @@ export default function Home() {
         </a>
       </header>
 
+      {/* Hero */}
+      <section className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-32 md:py-44">
+        <h1 className="font-pixel text-4xl sm:text-5xl md:text-7xl text-foreground mb-6 tracking-wider drop-shadow-sm">
+          TRACK IT
+        </h1>
+        <p className="font-pixel-body text-2xl sm:text-3xl text-muted-foreground max-w-2xl mb-4">
+          You ship, we ship.
+        </p>
+        <p className="font-pixel-body text-lg sm:text-xl text-muted-foreground max-w-xl mb-10">
+          Build a map app, GeoGuessr-style game, or DIY GPS tracker — and win prizes from Hack Club.
+        </p>
+        <a
+          href="#rsvp"
+          id="rsvp"
+          className="font-pixel text-sm sm:text-base bg-primary text-primary-foreground px-8 py-4 border-4 border-primary animate-pulse-glow hover:scale-105 transition-transform"
+        >
+          RSVP NOW
+        </a>
+      </section>
+
       {/* Footer */}
       <footer className="relative z-10 border-t border-border bg-background/70 backdrop-blur-sm py-10 px-6">
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
